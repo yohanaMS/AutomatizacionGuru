@@ -22,12 +22,18 @@ public class FundTransfer {
     By TxtDescription = By.name("desc");
     By BtnSubmit = By.name("AccSubmit");
     By BtnReset = By.name("res");
-    By MsgPayers =By.id("message10");
+    By MsgPayees =By.id("message11");
+    
+    By btnFundTransfer =By.xpath("/html/body/div[3]/div/ul/li[10]/a");
 
     public FundTransfer(WebDriver Driver) {
         this.Driver = Driver;
     }
-        
+    
+    public void ClickBtnFundTransfer(){
+       Driver.findElement(btnFundTransfer).click();
+    } 
+    
      public void ClickBtnSubmit(){
        Driver.findElement(BtnSubmit).click();
     }
@@ -65,8 +71,12 @@ public class FundTransfer {
         return Messege.getText();
     }
     
-    public String getMensajePayers(){
-        return Driver.findElement(MsgPayers).getText();
+    public void aceptarAlert(){
+        Driver.switchTo().alert().accept();
+    }
+    
+    public String getMensajePayees(){
+        return Driver.findElement(MsgPayees).getText();
      }
     
      

@@ -84,13 +84,17 @@ public class CasosPruebas {
     
     @Test
     public void VerificarUsuario() {
-        assertEquals("Manger Id : " + User, FTransferTest.getMensajePayers());
+        assertEquals("Manger Id : " + User,LoginTest.getUsuarioIngresado() );
     }
     
     @Test
     public void ObligatoriedadPayees() {
-        
-        assertEquals("Payees Account Number must not be blank" , LoginTest.getUsuarioIngresado());
+        FTransferTest = new FundTransfer(Driver);
+        FTransferTest.ClickBtnFundTransfer();
+        FTransferTest.llenarFundTransfer("", "123456", "300000", "Caso prueba 1");
+        assertEquals("Please fill all fields", FTransferTest.getMensajeAlert());
+        FTransferTest.aceptarAlert();
+        assertEquals("Payees Account Number must not be blank" ,FTransferTest.getMensajePayees() );
     }
     
     @After
