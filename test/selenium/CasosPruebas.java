@@ -88,12 +88,13 @@ public class CasosPruebas {
     }
     
     @Test
-    public void ObligatoriedadPayees() {
+    public void ObligatoriedadPayees() throws InterruptedException {
         FTransferTest = new FundTransfer(Driver);
         FTransferTest.ClickBtnFundTransfer();
-        FTransferTest.llenarFundTransfer("", "123456", "300000", "Caso prueba 1");
+        FTransferTest.llenarFundTransfer("123456", "", "300000", "Caso prueba 1");
         assertEquals("Please fill all fields", FTransferTest.getMensajeAlert());
         FTransferTest.aceptarAlert();
+        Thread.sleep(5000);
         assertEquals("Payees Account Number must not be blank" ,FTransferTest.getMensajePayees() );
     }
     
